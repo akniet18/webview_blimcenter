@@ -87,7 +87,7 @@ export default {
     }
     if (this.$route.query.type == 1){
       axios.get(
-        "http://138.68.102.163/ent/oneSubject/"+this.$route.query.sub1,
+        "http://back.bilimcentre.kz/ent/oneSubject/"+this.$route.query.sub1,
         {headers}
       ).then(r=>{
         for(let i in r.data.data){
@@ -105,7 +105,7 @@ export default {
         "sub_id2": this.$route.query.sub2
       }
       axios.post(
-        "http://138.68.102.163/ent/pass",
+        "http://back.bilimcentre.kz/ent/pass",
         data,
         {headers}
       ).then(r => {

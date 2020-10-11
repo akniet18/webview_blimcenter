@@ -113,7 +113,7 @@ export default {
             }
             console.log(data)
             axios.post(
-                "http://138.68.102.163/users/history",
+                "http://back.bilimcentre.kz/users/history",
                 data,
                 {headers}
             ).then(r=>{
