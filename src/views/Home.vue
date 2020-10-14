@@ -272,8 +272,12 @@ export default {
     justify-content: center;
     align-items: center;
     width: 100%;
+    -webkit-display: flex;
+    -moz-display: flex;
     .question {
       display: flex;
+      -webkit-display: flex;
+      -moz-display: flex;
       flex-direction: column;
       padding: 10px 0px;
       top: 60px;
@@ -305,6 +309,8 @@ export default {
 }
 .settings{
   display: flex;
+  -webkit-display: flex;
+  -moz-display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.2em;

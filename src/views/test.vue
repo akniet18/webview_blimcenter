@@ -182,6 +182,8 @@ header{
     font-weight: bold;
     margin-bottom: 5%;
     display: flex;
+    -webkit-display: flex;
+    -moz-display: flex;
     align-items: center;
     justify-content: space-between;
 }
@@ -220,6 +222,8 @@ header{
     color: #020000;
     padding: 5px 15px;
     display: flex;
+    -webkit-display: flex;
+    -moz-display: flex;
     justify-content: center;
     align-items: center;
     border-top-left-radius: 50%;
