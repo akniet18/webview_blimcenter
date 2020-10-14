@@ -2,7 +2,7 @@
     <div>
         <header>
             <div>Жауаптары</div> 
-            <div @click="next">next</div>
+            <div @click="next">Көру</div>
         </header>
         <div v-if="$route.query.type == 1">
             <div class="sub_name">
@@ -23,10 +23,10 @@
                 <span>Оқу сауаттылығы</span> 
                 <div class="my_anwer">{{answer[2]}}/{{count[2]}}</div>
             </div>
-            <div class="sub_name">
+            <div class="sub_name sub_name34">
                 <span>{{sub1}}</span> <div class="my_anwer">{{answer[3]}}/{{count[3]}}</div>
             </div>
-            <div class="sub_name">
+            <div class="sub_name sub_name34">
                 <span>{{sub2}}</span> 
                 <div class="my_anwer">{{answer[4]}}/{{count[4]}}</div>
             </div>
@@ -35,6 +35,8 @@
 </template>
 
 <script>
+import axios from "axios"
+
 export default {
     data(){
         return{
@@ -98,7 +100,8 @@ export default {
                     }
                 }
                 this.answer.push(answerr)
-            }else{
+            }
+            else{
                 for (let i in this.questions){
                     let answerr = 0
                     for (let j in this.questions[i]){
@@ -133,6 +136,7 @@ export default {
                     this.answer.push(answerr)
                 }
             }
+            this.finish()
         },
         next(){
             const summ = this.answer.reduce(function(acc, val) { return acc + val; }, 0)
@@ -140,6 +144,31 @@ export default {
                         query: {'sub1': this.sub1, "sub2": this.sub2, 'key': this.$route.query.key,
                                 'type': this.$route.query.type, 'right': summ,
                                 "sub1_id": this.$route.query.sub1_id, "sub2_id": this.$route.query.sub2_id}})
+        },
+        finish(){
+            const summ = this.answer.reduce(function(acc, val) { return acc + val; }, 0)
+            let headers = {
+                'Authorization': 'Token ' + this.$route.query.key
+            }
+            let data = {
+                "right_answers": summ,
+            }
+            if (this.$route.query.type == 1){
+                data['subject1'] = this.$route.query.sub1_id
+            }else{
+                data['subject1'] = this.$route.query.sub1_id
+                data['subject2'] = this.$route.query.sub2_id
+            }
+            console.log(data)
+            axios.post(
+                "http://back.bilimcentre.kz/users/history",
+                data,
+                {headers}
+            ).then(r=>{
+                console.log(r)
+            }, r=> {
+                console.log(r)
+            })
         }
     }
 }
@@ -171,10 +200,15 @@ header{
     display: flex;
     align-items: center;
 }
+.sub_name34{
+    background: #84DCC6;
+}
 .sub_name span{
     display: flex;
     width: 80%;
+    color: #505050;
 }
+
 .my_anwer{
     position: absolute;
     top: 0;
@@ -183,12 +217,16 @@ header{
     height: calc(100% - 10px);
     font-size: 1.1em;
     background: #F3E9D2;
+    color: #020000;
     padding: 5px 15px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-top-left-radius: 50%;
     border-bottom-left-radius: 50%;
+}
+.sub_name34 .my_anwer{
+    background: #FF686B;
 }
 .info{
     display: flex;

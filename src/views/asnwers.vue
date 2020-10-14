@@ -1,15 +1,7 @@
 <template>
-    <div>
+    <div class="home">
         <div class="header">
-            <button class="back-button" @click="backQuestion">
-                Артка
-            </button>
-            <template>
-                <button class="next-button" @click="nextQuestion">
-                Алга
-                </button>
-            </template>
-            <button class="back-button" @click="finish">
+            <button class="finish" @click="finish">
                 Аяқтау
             </button>
         </div>
@@ -18,13 +10,27 @@
                 <div class="subname">{{sub1}}</div>
             </div>
             <div class="container">
-                <div class="question" v-for="(i, ind) in questions" :key="ind">
-                <template v-if="ind === questionId">
-                    <h4>{{ i.text }}</h4>
-                    
-                    <img v-for="im in i.question_photo" :src="im.photo" :key="im.photo">
-                    <div class="answers" v-for="(v, index) in i.question_variant" :key="index+'v'">
-                        <button  :id="`button`+v.id" @click="touchButton(ind, v.id)"
+                <div class="question">
+                    <template >
+                        <h4>{{ questions[questionId].text }}</h4>
+                        <img v-for="im in questions[questionId].question_photo" :src="im.photo" :key="im.photo">
+                    </template>
+                </div>
+                <div class="settings">
+                    <button class="back-button" @click="backQuestion">
+                        <div style="font-size: 1.4em">&#60;</div> 
+                    </button>
+                    <div>
+                        {{questionId+1}}/{{questions.length}}
+                    </div>
+                    <button class="next-button" @click="nextQuestion">
+                        <div style="font-size: 1.4em">&#62;</div>
+                    </button>
+                </div>
+                <div class="question">
+                <template>
+                    <div class="answers" v-for="(v, index) in questions[questionId].question_variant" :key="index+'v'">
+                        <button  :id="`button`+v.id"
                                 :class="[v.is_right ? 'active' : '', 'variant-button']">
                             {{ v.text }}
                         </button>
@@ -43,18 +49,31 @@
                 <option value="5">{{sub2}}</option>
                 </select>
             </div>
-            <div class="container">
-                <div class="question" v-for="(i, ind) in questions[select-1]" :key="ind">
-                <template v-if="ind === questionId">
-                    <h4>{{ i.text }}</h4>
-                    
-                    <img v-for="im in i.question_photo" :src="im.photo" :key="im.photo">
-                    <div class="answers" v-for="(v, index) in i.question_variant" :key="index">
-                    <button  :id="`button`+v.id" @click="touchButton(ind, v.id)"
-                            :class="[i.selected_id.includes(v.id) ? 'active' : '', 'variant-button']">
-                        {{ v.text }}
-                        {{i.selected_id.includes(v.id)}}
+           <div class="container">
+                <div class="question">
+                    <template >
+                        <h4>{{ questions[select-1][questionId].text }}</h4>
+                        <img v-for="im in questions[select-1][questionId].question_photo" :src="im.photo" :key="im.photo">
+                    </template>
+                </div>
+                <div class="settings">
+                    <button class="back-button" @click="backQuestion">
+                        <div style="font-size: 1.4em">&#60;</div> 
                     </button>
+                    <div>
+                        {{questionId+1}}/{{questions[select-1].length}}
+                    </div>
+                    <button class="next-button" @click="nextQuestion">
+                        <div style="font-size: 1.4em">&#62;</div>
+                    </button>
+                </div>
+                <div class="question">
+                <template>
+                    <div class="answers" v-for="(v, index) in questions[select-1][questionId].question_variant" :key="index+'v'">
+                        <button  :id="`button`+v.id"
+                                :class="[v.is_right ? 'active' : '', 'variant-button']">
+                            {{ v.text }}
+                        </button>
                     </div>
                 </template>
                 </div>
@@ -64,7 +83,6 @@
 </template>
 
 <script>
-import axios from "axios"
 export default {
     data(){
         return{
@@ -99,106 +117,9 @@ export default {
             }
         },
         finish(){
-            let headers = {
-                'Authorization': 'Token ' + this.$route.query.key
-            }
-            let data = {
-                "right_answers": this.$route.query.right,
-            }
-            if (this.$route.query.type == 1){
-                data['subject1'] = this.sub1
-            }else{
-                data['subject1'] = this.$route.query.sub1_id
-                data['subject2'] = this.$route.query.sub2_id
-            }
-            console.log(data)
-            axios.post(
-                "http://back.bilimcentre.kz/users/history",
-                data,
-                {headers}
-            ).then(r=>{
-                console.log(r)
-            }, r=> {
-                console.log(r)
-            })
             window.webkit.messageHandlers.iosListener.postMessage('Finish')
             Android.showToast("done");
         }
     }
 }
 </script>
-
-<style scoped>
-* {
-  margin: 0;
-  padding: 0;
-}
-.header {
-display: flex;
-padding: 5px 20px;
-}
-.header button {
-    width: 100px;
-    height: 30px;
-    font-size: 14px;
-    font-weight: 600;
-    text-transform: uppercase;
-}
-  
-.container {
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-width: 100%;
-}
-.question {
-display: flex;
-flex-direction: column;
-padding: 20px 0px;
-position: absolute;
-top: 60px;
-width: 90%;
-}
-.question h4 {
-margin-bottom: 5px;
-}
-.question img {
-max-width: 300px;
-max-height: 400px;
-margin-bottom: 20px;
-}
-.variant-button {
-width: 100%;
-height: 35px;
-text-align: left;
-padding: 5px 10px;
-margin: 5px 5px 5px 0;
-border: 1px solid #929292;
-border-radius: 10px;
-background: #f1f1f1;
-}
-.success {
-background: #4fb34f;
-}
-
-select{
-  width: 100%;
-  height: 30px;
-  padding: 2px 5px;
-  border: 1px solid #929292;
-  background: #f1f1f1;
-}
-.active{
-  background: green!important; 
-  color: #fff;
-}
-.subname{
-  background:  #f1f1f1;
-  font-weight: 500;
-  font-size: 1.1em;
-  text-align: center;
-  padding: 5px;
-  color: #000;
-}
-</style>

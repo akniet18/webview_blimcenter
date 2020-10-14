@@ -1,15 +1,7 @@
 <template>
   <div class="home">
     <div class="header">
-      <button class="back-button" @click="backQuestion">
-        Артка
-      </button>
-      <template>
-        <button class="next-button" @click="nextQuestion">
-          Алга
-        </button>
-      </template>
-      <button class="back-button" @click="end">
+      <button class="finish" @click="end">
         Аяқтау
       </button>
     </div>
@@ -24,16 +16,31 @@
         </select>
       </div>
       <div class="container">
-        <div class="question" v-for="(i, ind) in questions[select-1]" :key="ind">
-          <template v-if="ind === questionId">
-            <h4>{{ i.text }}</h4>
-            
-            <img v-for="im in i.question_photo" :src="im.photo" :key="im.photo">
-            <div class="answers" v-for="(v, index) in i.question_variant" :key="index">
-              <button  :id="`button`+v.id" @click="touchButton(ind, v.id)"
-                      :class="[i.selected_id.includes(v.id) ? 'active' : '', 'variant-button']">
+        <div class="question">
+          <template >
+            <h4>{{ questions[select-1][questionId].text }}</h4>
+            <img v-for="im in questions[select-1][questionId].question_photo" :src="im.photo" :key="im.photo">
+          </template>
+        </div>
+
+         <div class="settings">
+          <button class="back-button" @click="backQuestion">
+             <div style="font-size: 1.4em">&#60;</div> 
+          </button>
+          <div>
+            {{questionId+1}}/{{questions[select-1].length}}
+          </div>
+          <button class="next-button" @click="nextQuestion">
+            <div style="font-size: 1.4em">&#62;</div>
+          </button>
+        </div>
+
+        <div class="question">
+          <template>
+            <div class="answers" v-for="(v, index) in questions[select-1][questionId].question_variant" :key="index">
+              <button  :id="`button`+v.id" @click="touchButton(questionId, v.id)"
+                      :class="[questions[select-1][questionId].selected_id.includes(v.id) ? 'active' : '', 'variant-button']">
                 {{ v.text }}
-                {{i.selected_id.includes(v.id)}}
               </button>
             </div>
           </template>
@@ -45,14 +52,30 @@
         <div class="subname">{{sub1}}</div>
       </div>
       <div class="container">
-        <div class="question" v-for="(i, ind) in questions" :key="ind">
-          <template v-if="ind === questionId">
-            <h4>{{ i.text }}</h4>
-            
-            <img v-for="im in i.question_photo" :src="im.photo" :key="im.photo">
-            <div class="answers" v-for="(v, index) in i.question_variant" :key="index">
-              <button  :id="`button`+v.id" @click="touchButton(ind, v.id)"
-                      :class="[i.selected_id.includes(v.id) ? 'active' : '', 'variant-button']">
+        <div class="question">
+          <template >
+            <h4>{{ questions[questionId].text }}</h4>
+            <img v-for="im in questions[questionId].question_photo" :src="im.photo" :key="im.photo">
+          </template>
+        </div>
+        
+        <div class="settings">
+          <button class="back-button" @click="backQuestion">
+             <div style="font-size: 1.4em">&#60;</div> 
+          </button>
+          <div>
+            {{questionId+1}}/{{questions.length}}
+          </div>
+          <button class="next-button" @click="nextQuestion">
+            <div style="font-size: 1.4em">&#62;</div>
+          </button>
+        </div>
+        
+        <div class="question">
+          <template>
+            <div class="answers" v-for="(v, index) in questions[questionId].question_variant" :key="index">
+              <button  :id="`button`+v.id" @click="touchButton(questionId, v.id)"
+                      :class="[questions[questionId].selected_id.includes(v.id) ? 'active' : '', 'variant-button']">
                 {{ v.text }}
               </button>
             </div>
@@ -225,7 +248,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 * {
   margin: 0;
   padding: 0;
@@ -233,9 +256,10 @@ export default {
 .home {
   .header {
     display: flex;
-    padding: 5px 20px;
-    button {
-      width: 100px;
+    padding: 5px 10px;
+    justify-content: flex-end;
+    .finish {
+      width: 80px;
       height: 30px;
       font-size: 14px;
       font-weight: 600;
@@ -251,8 +275,7 @@ export default {
     .question {
       display: flex;
       flex-direction: column;
-      padding: 40px 0px;
-      position: absolute;
+      padding: 10px 0px;
       top: 60px;
       width: 90%;
       h4 {
@@ -270,21 +293,37 @@ export default {
         padding: 5px;
         margin: 5px 5px 5px 0;
         justify-self: center;
-        border: 1px solid #929292;
+        border: 1px solid #C4C4C4;
         border-radius: 10px;
         background: #f1f1f1;
       }
       .success {
-        background: #4fb34f;
+        background: #02C302;
       }
     }
   }
+}
+.settings{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+}
+.back-button{
+  margin-right: 10px;
+  color: #02C302;
+  padding: 5px;
+}
+.next-button{
+  margin-left: 10px;
+  color: #02C302;
+  padding: 5px;
 }
 select{
   width: 100%;
   height: 30px;
   padding: 2px 5px;
-  border: 1px solid #929292;
+  border: 1px solid #C4C4C4;
   background: #f1f1f1;
 }
 .active{
@@ -296,7 +335,7 @@ select{
   font-weight: 500;
   font-size: 1.1em;
   text-align: center;
-  padding: 5px;
+  padding: 8px 5px;
   color: #000;
 }
 </style>
