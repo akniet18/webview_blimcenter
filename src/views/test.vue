@@ -181,11 +181,17 @@ header{
     font-size: 1.5em;
     font-weight: bold;
     margin-bottom: 5%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     -webkit-display: flex;
     -moz-display: flex;
-    align-items: center;
-    justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
 }
 
 .sub_name{
@@ -199,13 +205,19 @@ header{
     padding: 15px 5px;
     overflow: hidden;
     height: 45px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 .sub_name34{
     background: #84DCC6;
 }
 .sub_name span{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     width: 80%;
     color: #505050;
@@ -221,11 +233,17 @@ header{
     background: #F3E9D2;
     color: #020000;
     padding: 5px 15px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     -webkit-display: flex;
     -moz-display: flex;
-    justify-content: center;
-    align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     border-top-left-radius: 50%;
     border-bottom-left-radius: 50%;
 }
@@ -233,10 +251,14 @@ header{
     background: #FF686B;
 }
 .info{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     width: 90%;
     margin: 5px auto;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     font-size: 1.1em;
 }
 .circle{

@@ -255,9 +255,13 @@ export default {
 }
 .home {
   .header {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     padding: 5px 10px;
-    justify-content: flex-end;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
     .finish {
       width: 80px;
       height: 30px;
@@ -267,18 +271,32 @@ export default {
     }
   }
   .container {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     width: 100%;
     -webkit-display: flex;
     -moz-display: flex;
     .question {
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
       -webkit-display: flex;
       -moz-display: flex;
-      flex-direction: column;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column;
       padding: 10px 0px;
       top: 60px;
       width: 90%;
@@ -296,7 +314,8 @@ export default {
         text-align: left;
         padding: 5px;
         margin: 5px 5px 5px 0;
-        justify-self: center;
+        -ms-grid-column-align: center;
+            justify-self: center;
         border: 1px solid #C4C4C4;
         border-radius: 10px;
         background: #f1f1f1;
@@ -308,11 +327,17 @@ export default {
   }
 }
 .settings{
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   -webkit-display: flex;
   -moz-display: flex;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   font-size: 1.2em;
 }
 .back-button{
