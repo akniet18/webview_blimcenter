@@ -119,8 +119,8 @@ export default {
             }
         },
         finish(){
-            window.webkit.messageHandlers.iosListener.postMessage('Finish')
             Android.showToast("done");
+            window.webkit.messageHandlers.iosListener.postMessage('Finish')
         }
     }
 }
