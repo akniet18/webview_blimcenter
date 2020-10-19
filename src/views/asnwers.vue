@@ -3,7 +3,7 @@
         <div class="header">
             <div> </div>
             <div style="font-weight: bold; justify-self: center">Тестілеу</div>
-            <div class="finish" @click="finish">
+            <div class="finish" @click="android(); ios()">
                 Аяқтау
             </div>
         </div>

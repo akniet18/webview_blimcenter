@@ -88,7 +88,7 @@
           <div>
             <div>Тестті аяқтағыңыз келеді ме?</div>
             <div class="modalBtnDiv">
-              <div class="modalBtn" @click="yesmodal">Я</div>
+              <div class="modalBtn" @click="yesmodal">Иә</div>
               <div class="modalBtn" @click="nomodal">Жоқ</div>
             </div>
           </div>
