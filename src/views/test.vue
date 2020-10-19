@@ -176,11 +176,12 @@ export default {
 
 <style scoped>
 header{
-    background: #f1f1f1;
     padding: 10px 10px;
-    font-size: 1.5em;
+    font-size: 1.2em;
+    background: #02C302;
     font-weight: bold;
     margin-bottom: 5%;
+    height: 20px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -192,6 +193,7 @@ header{
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
+    color: #fff
 }
 
 .sub_name{

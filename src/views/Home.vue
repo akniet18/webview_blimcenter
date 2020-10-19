@@ -1,9 +1,11 @@
 <template>
   <div class="home">
     <div class="header">
-      <button class="finish" @click="end">
+      <div> </div>
+      <div style="font-weight: bold; justify-self: center">Тестілеу</div>
+      <div class="finish" @click="end">
         Аяқтау
-      </button>
+      </div>
     </div>
     <div v-if="$route.query.type == 2">
       <div>
@@ -253,21 +255,25 @@ export default {
   margin: 0;
   padding: 0;
 }
+button {
+-webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
+}
 .home {
   .header {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    color: #fff;
+    height: 30px;
     padding: 5px 10px;
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: flex-end;
-    .finish {
-      width: 80px;
-      height: 30px;
-      font-size: 14px;
-      font-weight: 600;
-      text-transform: uppercase;
+    background: #02C302;
+    align-items: center;
+    -webkit-box-pack: space-between;
+        -ms-flex-pack: space-between;
+            justify-content: center;
+    .finish{
+      justify-self: end
     }
   }
   .container {
@@ -340,6 +346,9 @@ export default {
           justify-content: center;
   font-size: 1.2em;
 }
+.settings button{
+  border: 1px solid gray
+}
 .back-button{
   margin-right: 10px;
   color: #02C302;
@@ -369,5 +378,6 @@ select{
   padding: 8px 5px;
   color: #000;
 }
+
 </style>
 

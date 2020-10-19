@@ -1,9 +1,11 @@
 <template>
     <div class="home">
         <div class="header">
-            <button class="finish" @click="finish">
+            <div> </div>
+            <div style="font-weight: bold; justify-self: center">Тестілеу</div>
+            <div class="finish" @click="finish">
                 Аяқтау
-            </button>
+            </div>
         </div>
         <div v-if="$route.query.type == 1">
             <div>
