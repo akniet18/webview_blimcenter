@@ -284,7 +284,7 @@ appearance: none;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     color: #fff;
-    height: 30px;
+    height: 40px;
     padding: 5px 10px;
     background: #02C302;
     align-items: center;

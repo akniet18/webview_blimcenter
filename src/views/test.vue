@@ -181,7 +181,7 @@ header{
     background: #02C302;
     font-weight: bold;
     margin-bottom: 5%;
-    height: 20px;
+    height: 30px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
