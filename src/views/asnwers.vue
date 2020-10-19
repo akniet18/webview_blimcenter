@@ -3,8 +3,8 @@
         <div class="header">
             <div> </div>
             <div style="font-weight: bold; justify-self: center">Тестілеу</div>
-            <div class="finish" @click="android(); ios()">
-                Аяқтау
+            <div class="finish" @click="android()">
+                <div @click="ios()">Аяқтау</div>
             </div>
         </div>
         <div v-if="$route.query.type == 1">
