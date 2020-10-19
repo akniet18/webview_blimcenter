@@ -119,7 +119,13 @@ export default {
             }
         },
         finish(){
+            this.android()
+            this.ios()            
+        },
+        android(){
             Android.showToast("done");
+        },
+        ios(){
             window.webkit.messageHandlers.iosListener.postMessage('Finish')
         }
     }

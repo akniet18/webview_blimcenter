@@ -83,6 +83,16 @@
             </div>
           </template>
         </div>
+
+        <div class="modal" ref="modal">
+          <div>
+            <div>Тестті аяқтағыңыз келеді ме?</div>
+            <div class="modalBtnDiv">
+              <div class="modalBtn" @click="yesmodal">Я</div>
+              <div class="modalBtn" @click="nomodal">Жоқ</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -241,10 +251,17 @@ export default {
       }
     },
     end(){
+      this.$refs.modal.style.display = "block"
+    },
+    yesmodal(){
+      this.$refs.modal.style.display = "none"
       this.$router.push({name: "Test", params: {'questions': this.questions}, 
                         query: {'sub1': this.sub1, "sub2": this.sub2, 'key': this.$route.query.key,
                                 'type': this.$route.query.type, 
                                 "sub1_id": this.sub1_id, "sub2_id": this.sub2_id}})
+    },
+    nomodal(){
+      this.$refs.modal.style.display = "none"
     }
   }
 }
@@ -254,6 +271,8 @@ export default {
 * {
   margin: 0;
   padding: 0;
+  -webkit-user-select:none;
+  user-select: none;
 }
 button {
 -webkit-appearance: none;
@@ -378,6 +397,47 @@ select{
   padding: 8px 5px;
   color: #000;
 }
+.modal{
+  display: none;
+  position: absolute;
+  top: 40%;
+  width: 70%;
+  height: 100px;
+  border: 1px solid #000;
+  left: 50%;
+  -webkit-transform: translate(-50%, -90%);
+      -ms-transform: translate(-50%, -90%);
+          transform: translate(-50%, -90%);
+  z-index: 10;
+  padding: 20px;
+  background: #fff;
+  color:#000;
+  font-size: 1.1em;
+}
+.modalBtnDiv{
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.modalBtn{
+  padding: 5px;
+  border: 1px solid gray;
+  color: #fff;
+  width: 40px;
+  text-align: center;
+}
+.modalBtn:first-child{
+  background: #02C302;
+  margin-right: 15px;
+  
+}
+.modalBtn:last-child{
+  background: red;
 
+}
 </style>
 
