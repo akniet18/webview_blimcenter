@@ -42,7 +42,7 @@
             <div class="answers" v-for="(v, index) in questions[select-1][questionId].question_variant" :key="index">
               <button  :id="`button`+v.id" @click="touchButton(questionId, v.id)"
                       :class="[questions[select-1][questionId].selected_id.includes(v.id) ? 'active' : '', 'variant-button']">
-                {{ v.text }}
+                <div v-html="v.text"></div>
               </button>
             </div>
           </template>
@@ -78,7 +78,7 @@
             <div class="answers" v-for="(v, index) in questions[questionId].question_variant" :key="index">
               <button  :id="`button`+v.id" @click="touchButton(questionId, v.id)"
                       :class="[questions[questionId].selected_id.includes(v.id) ? 'active' : '', 'variant-button']">
-                {{ v.text }}
+                <div v-html="v.text"></div>
               </button>
             </div>
           </template>

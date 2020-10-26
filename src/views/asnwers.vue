@@ -34,7 +34,7 @@
                     <div class="answers" v-for="(v, index) in questions[questionId].question_variant" :key="index+'v'">
                         <button  :id="`button`+v.id"
                                 :class="[v.is_right ? 'active' : '', 'variant-button']">
-                            {{ v.text }}
+                            <div v-html="v.text"></div>
                         </button>
                     </div>
                 </template>
@@ -74,7 +74,7 @@
                     <div class="answers" v-for="(v, index) in questions[select-1][questionId].question_variant" :key="index+'v'">
                         <button  :id="`button`+v.id"
                                 :class="[v.is_right ? 'active' : '', 'variant-button']">
-                            {{ v.text }}
+                            <div v-html="v.text"></div>
                         </button>
                     </div>
                 </template>
