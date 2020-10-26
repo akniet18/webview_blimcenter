@@ -20,7 +20,7 @@
       <div class="container">
         <div class="question">
           <template >
-            <h4>{{ questions[select-1][questionId].text }}</h4>
+            <h4 v-html="questions[select-1][questionId].text"></h4>
             <img v-for="im in questions[select-1][questionId].question_photo" :src="im.photo" :key="im.photo">
           </template>
         </div>
@@ -56,7 +56,7 @@
       <div class="container">
         <div class="question">
           <template >
-            <h4>{{ questions[questionId].text }}</h4>
+            <h4 v-html="questions[questionId].text"></h4>
             <img v-for="im in questions[questionId].question_photo" :src="im.photo" :key="im.photo">
           </template>
         </div>
