@@ -336,7 +336,8 @@ outline: none;
       }
       .variant-button {
         width: 100%;
-        height: 35px;
+        min-height: 35px;
+        height: auto;
         text-align: left;
         padding: 5px;
         margin: 5px 5px 5px 0;
