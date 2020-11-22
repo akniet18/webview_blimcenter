@@ -20,8 +20,8 @@
       <div class="container">
         <div class="question">
           <template >
-            <h4 v-html="questions[select-1][questionId].text"></h4>
-            <img v-for="im in questions[select-1][questionId].question_photo" :src="im.photo" :key="im.photo">
+            <h4 style="font-size: 14px" v-html="questions[select-1][questionId].text"></h4>
+            <img class="q_img" v-for="im in questions[select-1][questionId].question_photo" :src="im.photo" :key="im.photo">
           </template>
         </div>
 
@@ -42,7 +42,7 @@
             <div class="answers" v-for="(v, index) in questions[select-1][questionId].question_variant" :key="index">
               <button  :id="`button`+v.id" @click="touchButton(questionId, v.id)"
                       :class="[questions[select-1][questionId].selected_id.includes(v.id) ? 'active' : '', 'variant-button']">
-                <div v-html="v.text"></div>
+                <div style="font-size: 14px" v-html="v.text"></div>
               </button>
             </div>
           </template>
@@ -56,7 +56,7 @@
       <div class="container">
         <div class="question">
           <template >
-            <h4 v-html="questions[questionId].text"></h4>
+            <h4 style="font-size: 16px" v-html="questions[questionId].text"></h4>
             <img v-for="im in questions[questionId].question_photo" :src="im.photo" :key="im.photo">
           </template>
         </div>
@@ -78,7 +78,7 @@
             <div class="answers" v-for="(v, index) in questions[questionId].question_variant" :key="index">
               <button  :id="`button`+v.id" @click="touchButton(questionId, v.id)"
                       :class="[questions[questionId].selected_id.includes(v.id) ? 'active' : '', 'variant-button']">
-                <div v-html="v.text"></div>
+                <div style="font-size: 14px" v-html="v.text"></div>
               </button>
             </div>
           </template>
@@ -329,11 +329,6 @@ outline: none;
       h4 {
         margin-bottom: 5px;
       }
-      img {
-        max-width: 300px;
-        max-height: 400px;
-        margin-bottom: 20px;
-      }
       .variant-button {
         width: 100%;
         min-height: 35px;
@@ -352,6 +347,11 @@ outline: none;
       }
     }
   }
+}
+.q_img{
+  max-width: 300px;
+  max-height: 400px;
+  margin-bottom: 20px;
 }
 .settings{
   display: -webkit-box;
