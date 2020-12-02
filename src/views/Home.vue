@@ -11,8 +11,8 @@
       <div>
         <select v-model="select" id="select" @change="questionId = 0">
           <option value="1">Математикалық сауаттылық</option>
-          <option value="2">Қазақстан тарихы</option>
-          <option value="3">Оқу сауаттылығы</option>
+          <option value="2">Оқу сауаттылығы</option>
+          <option value="3">Қазақстан тарихы</option>
           <option value="4">{{sub1}}</option>
           <option value="5">{{sub2}}</option>
         </select>
@@ -83,15 +83,14 @@
             </div>
           </template>
         </div>
-
-        <div class="modal" ref="modal">
-          <div>
-            <div>Тестті аяқтағыңыз келеді ме?</div>
-            <div class="modalBtnDiv">
-              <div class="modalBtn" @click="yesmodal">Иә</div>
-              <div class="modalBtn" @click="nomodal">Жоқ</div>
-            </div>
-          </div>
+      </div>
+    </div>
+    <div class="modal" ref="modal">
+      <div>
+        <div>Тестті аяқтағыңыз келеді ме?</div>
+        <div class="modalBtnDiv">
+          <div class="modalBtn" @click="yesmodal">Иә</div>
+          <div class="modalBtn" @click="nomodal">Жоқ</div>
         </div>
       </div>
     </div>
@@ -401,6 +400,7 @@ select{
 }
 .modal{
   display: none;
+  // opacity: 0;
   position: absolute;
   top: 40%;
   width: 70%;
